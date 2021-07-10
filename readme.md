@@ -9,9 +9,11 @@
 
 1. 用2k显示器看1080p到底有没有比较清楚？
 
-2. 会是什么呢？
+2. 还没有什么想法……
 
-3. 写什么好呢？
+3. 会是什么呢？
+
+4. 写什么好呢？
 
 
 ## 背景
@@ -53,7 +55,7 @@ def f(原图):
                 还原图 = cv2.resize(小图, (2560, 1440), interpolation=cv2.__getattribute__(插2))
                 diff图 = 原图.astype(float) - 还原图.astype(float)
                 yield (diff图**2).mean()**0.5, 目标尺寸[1], 插1, 插2
-print(sorted(tqdm(f(cv2.imread('./res/1.png')))))
+print(sorted(f(cv2.imread('./res/1.png'))))
 ```
 
 
@@ -114,7 +116,7 @@ print(sorted(tqdm(f(cv2.imread('./res/1.png')))))
 ]
 ```
 
-我挑了几张游戏CG作为输入，结果基本大同小异，以上是一个典型的输出。
+我挑了几张游戏CG作为输入，结果基本大同小异，以上是一个典型的输出。第1列为重构损失<sub>越小越清楚</sub>，第2列为多少P，第3列和第4列为缩小和放大时使用的插值算法。
 
 可以看出，如果选择一个最清楚的插值算法，1080P肯定是优于720P的，而且在大部分相同的插值算法下1080P也比720P更清楚——除了奇怪的`INTER_NEAREST`。
 
